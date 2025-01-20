@@ -1,6 +1,5 @@
 import os
 import argparse
-from pathlib import Path
 import torchaudio
 from app.utils.transcript import srt_to_transcript
 
@@ -27,9 +26,6 @@ def split(input_dir: str, output_dir: str):
                 "Both .srt and .mp3 files must be present in the input directory."
             )
 
-        file_name = Path(mp3_file).stem
-        output_subdir = os.path.join(output_dir, file_name)
-        os.makedirs(output_subdir, exist_ok=True)
         transcript = srt_to_transcript(srt_file)
         waveform, sample_rate = torchaudio.load(mp3_file)
 
@@ -43,15 +39,13 @@ def split(input_dir: str, output_dir: str):
             end_frame = int(end * sample_rate)
             segment = waveform[:, start_frame:end_frame]
 
-            output_file = os.path.join(
-                output_subdir, f"{idx}_{start}_{end}_{speaker}.wav"
-            )
+            output_file = os.path.join(output_dir, f"{idx}_{start}_{end}_{speaker}.wav")
 
             segments.append(f"{idx}|{start}|{end}|{speaker}|{speech}")
 
             torchaudio.save(output_file, segment, sample_rate)
 
-        segments_filepath = os.path.join(output_dir, "segments.txt")
+        segments_filepath = os.path.join(input_dir, "segments.txt")
 
         f = open(segments_filepath, "w")
         f.write("\n".join(segments))
