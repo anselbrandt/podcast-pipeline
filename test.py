@@ -1,13 +1,15 @@
-import nemo.collections.asr as nemo_asr
+import sqlite3
 
-speaker_model = nemo_asr.models.EncDecSpeakerLabelModel.from_pretrained(
-    "nvidia/speakerverification_en_titanet_large"
-)
+episode = "567"
+conn = sqlite3.connect("transcripts.db")
+c = conn.cursor()
 
-reference = "files/reference/john.wav"
+c.execute("""SELECT * FROM lines WHERE episode = ?""", (episode,))
 
-sample = "/home/ansel/dev/podcast-pipeline/files/wavs/5_11.934_15.75_Speaker 0.wav"
+results = c.fetchall()
 
-result = speaker_model.verify_speakers(reference, sample)
+conn.commit()
+conn.close()
 
-print(result)
+
+print(len(results))
