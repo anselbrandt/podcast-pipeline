@@ -8,8 +8,9 @@ wheels/
 
 # Virtual environments
 .venv
-huggingface/
+cache/
 whisper-diarization/
+chromadb/
 *.db
 *.mp3
 *.txt

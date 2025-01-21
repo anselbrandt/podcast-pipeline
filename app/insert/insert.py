@@ -33,7 +33,7 @@ def insert(file_path, show_name, episode_number, episode_title, episode_date):
 
     for line in lines:
         idx, start, end, speaker, speakername, speech = line.split("|")
-        wavfile = f"{idx}_{start}"
+        wavfile = f"{idx}_{start}_{end}_{speaker}.wav"
         duration = round(float(end) - float(start), 3)
         c.execute(
             "INSERT INTO lines VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",

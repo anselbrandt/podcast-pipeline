@@ -35,7 +35,7 @@ def chunk(file_path):
     splits = splitter(content_with_speaker)
     chunks = ["\n".join(split.docs) for split in splits]
     text = "\n\n".join(chunks)
-    filename = Path(file_path).name
+    filename = Path(file_path).stem
     outpath = os.path.join(chunkedDir, filename + ".txt")
     f = open(outpath, "w")
     f.write(text)

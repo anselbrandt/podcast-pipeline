@@ -2431,6 +2431,7 @@ dependencies = [
     { name = "nemo-toolkit", extra = ["asr"] },
     { name = "python-dotenv" },
     { name = "semantic-router" },
+    { name = "sentence-transformers" },
     { name = "torchaudio" },
 ]
 
@@ -2440,6 +2441,7 @@ requires-dist = [
     { name = "nemo-toolkit", extras = ["asr"], specifier = ">=2.1.0" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "semantic-router", specifier = ">=0.0.72" },
+    { name = "sentence-transformers", specifier = ">=3.3.1" },
     { name = "torchaudio", specifier = ">=2.5.1" },
 ]
 
@@ -3194,6 +3196,24 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/05/3c/95e129a8536225836f4d28803b962383c47c235ed734dee690efc7f574da/semantic_router-0.0.72.tar.gz", hash = "sha256:60c72d61ef7091f6ee70c73dc6416524ca7fb037b7245fc3348d055ee6f141b8", size = 64345 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/75/50/2fe9c0862f9e44716992c3746142a34a728d31c3c286fade57f596d72891/semantic_router-0.0.72-py3-none-any.whl", hash = "sha256:4973869859a514f3d94d8c82ef02f4822d833443151611eeb4c732d6111e716b", size = 85701 },
+]
+
+[[package]]
+name = "sentence-transformers"
+version = "3.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "huggingface-hub" },
+    { name = "pillow" },
+    { name = "scikit-learn" },
+    { name = "scipy" },
+    { name = "torch" },
+    { name = "tqdm" },
+    { name = "transformers" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/79/0a/c677efe908b20e7e8d4ed6cce3a3447eebc7dc5e348e458f5f9a44a72b00/sentence_transformers-3.3.1.tar.gz", hash = "sha256:9635dbfb11c6b01d036b9cfcee29f7716ab64cf2407ad9f403a2e607da2ac48b", size = 217914 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8b/c8/990e22a465e4771338da434d799578865d6d7ef1fdb50bd844b7ecdcfa19/sentence_transformers-3.3.1-py3-none-any.whl", hash = "sha256:abffcc79dab37b7d18d21a26d5914223dd42239cfe18cb5e111c66c54b658ae7", size = 268797 },
 ]
 
 [[package]]
