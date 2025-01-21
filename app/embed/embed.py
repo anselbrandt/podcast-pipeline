@@ -8,7 +8,7 @@ from chromadb.utils import embedding_functions
 
 ROOT = os.getcwd()
 
-chromadb_dir = os.path.join(ROOT, "files", "chromadb")
+chromadb_dir = os.path.join(ROOT, "chromadb")
 
 sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
     model_name="all-mpnet-base-v2", device="cuda"
@@ -18,11 +18,11 @@ chroma_client = chromadb.PersistentClient(path=chromadb_dir)
 
 try:
     collection = chroma_client.get_collection(
-        name="roderick", embedding_function=sentence_transformer_ef
+        name="podcasts", embedding_function=sentence_transformer_ef
     )
 except:
     collection = chroma_client.create_collection(
-        name="roderick", embedding_function=sentence_transformer_ef
+        name="podcasts", embedding_function=sentence_transformer_ef
     )
 
 chunked_dir = os.path.join(ROOT, "files", "chunked")
