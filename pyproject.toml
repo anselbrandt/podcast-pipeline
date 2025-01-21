@@ -12,3 +12,17 @@ dependencies = [
     "sentence-transformers>=3.3.1",
     "torchaudio>=2.5.1",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+    "ruff>=0.9.2",
+    "taskipy>=1.14.1",
+]
+
+[tool.ruff]
+include = ["pyproject.toml", "app/**/*.py", "tests/**/*.py", "utils/**/*.py"]
+
+[tool.taskipy.tasks]
+test = "uv run pytest -q"
+lint = "uv run ruff check"
