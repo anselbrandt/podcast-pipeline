@@ -60,8 +60,8 @@ def label(input_dir: str, output_dir: str, reference_wav: str, hosts: list[str])
             for idx, start, end, speaker, speech in transcript
         ]
         segments = [
-            f"{idx}|{start}|{end}|{speaker}|{speech}"
-            for idx, start, end, speaker, speech in labeled
+            f"{idx}|{start}|{end}|{speaker}|{speakerLabels[speaker]}|{speech}"
+            for idx, start, end, speaker, speech in transcript
         ]
         srt = transcript_to_srt(labeled)
         f = open(srt_outpath, "w")
