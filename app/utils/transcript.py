@@ -29,3 +29,37 @@ def srt_to_transcript(filepath):
         > timeToSeconds(times.split(" --> ")[0])
     ]
     return transcript
+
+
+def secondsToTime(seconds):
+    result = timedelta(seconds=seconds)
+    string = (
+        str(timedelta(seconds=result.seconds))
+        + ","
+        + str(int(result.microseconds / 1000))
+    )
+    return string
+
+
+def transcript_to_srt(transcript):
+    lines = [
+        f"{idx}\n{secondsToTime(start)} --> {secondsToTime(end)}\n{speaker}: {speech}"
+        for idx, start, end, speaker, speech in transcript
+    ]
+    return "\n\n".join(lines)
+
+
+def labelTextTranscript(textTranscript, labels):
+    labeled = []
+    for line in textTranscript:
+        speaker = line.split(":")[0]
+        if not line.split(":")[1].isspace() and len(line.split(":")) > 1:
+            labeled.append(line.replace(speaker, labels[speaker]))
+    return labeled
+
+
+def getTextTranscript(filepath):
+    file = open(filepath, encoding="utf-8-sig").read().splitlines()
+
+    lines = [line.rstrip() for line in file if line != ""]
+    return lines
