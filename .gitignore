@@ -15,3 +15,4 @@ whisper-diarization/
 *.txt
 *.srt
 *.wav
+.env
