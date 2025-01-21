@@ -1,6 +1,7 @@
 import os
 import argparse
 from dotenv import load_dotenv
+from pathlib import Path
 
 from semantic_router.encoders import OpenAIEncoder
 from semantic_router.splitters import RollingWindowSplitter
@@ -21,7 +22,24 @@ def chunk(file_path, show_name, episode_number, episode_title, episode_date):
     content_with_speaker = [
         f"{idx}|{speaker}: {speech} " for idx, start, end, speaker, speech in transcript
     ]
-    print(content_with_speaker)
+    splitter = RollingWindowSplitter(
+        encoder=encoder,
+        dynamic_threshold=True,
+        min_split_tokens=100,
+        max_split_tokens=500,
+        window_size=2,
+        plot_splits=False,  # set this to true to visualize chunking
+        enable_statistics=False,  # to print chunking stats
+    )
+
+    splits = splitter(content_with_speaker)
+    chunks = ["\n".join(split.docs) for split in splits]
+    text = "\n\n".join(chunks)
+    filename = Path(file_path).name
+    outpath = os.path.join(chunkedDir, filename + ".txt")
+    f = open(outpath, "w")
+    f.write(text)
+    f.close()
 
 
 def main():
