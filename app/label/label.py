@@ -1,6 +1,7 @@
 import argparse
 import os
 from pathlib import Path
+import logging
 
 from app.utils import (
     srt_to_transcript,
@@ -10,8 +11,9 @@ from app.utils import (
 )
 from .label_utils import getSpeakerLabels
 
-ROOT = os.getcwd()
+logging.getLogger('nemo_logger').setLevel(logging.ERROR)
 
+ROOT = os.getcwd()
 
 def label(input_dir: str, output_dir: str, reference_wav: str, hosts: list[str]):
     try:

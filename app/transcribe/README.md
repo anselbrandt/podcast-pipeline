@@ -14,6 +14,10 @@ Build and run the docker container:
 
 ```
 docker build -t whisper-nemo .
+```
 
-docker run -it --privileged --rm --gpus all -v "$(pwd)/files:/app/files" -v "$(pwd)/cache/huggingface:/root/.cache/huggingface" whisper-nemo files/input/<file name>
+### From project root directory:
+
+```
+docker run --privileged --rm --gpus all -v "$(pwd)/files:/app/files" -v "$(pwd)/cache/huggingface:/root/.cache/huggingface" whisper-nemo files/input/000_-_sample_episode.mp3
 ```

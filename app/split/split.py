@@ -6,9 +6,9 @@ from app.utils.transcript import srt_to_transcript
 ROOT = os.getcwd()
 
 
-def split(input_dir: str, output_dir: str):
+def split(input_dir: str):
     try:
-        output_dir = os.path.join(ROOT, output_dir)
+        output_dir = os.path.join(input_dir, "wavs")
         os.makedirs(output_dir, exist_ok=True)
 
         srt_file, mp3_file = None, None
@@ -62,13 +62,10 @@ def main():
     parser.add_argument(
         "input_dir", type=str, help="Directory containing input .srt and .mp3 files."
     )
-    parser.add_argument(
-        "output_dir", type=str, help="Directory to save output segments."
-    )
 
     args = parser.parse_args()
 
-    split(args.input_dir, args.output_dir)
+    split(args.input_dir)
 
 
 if __name__ == "__main__":
