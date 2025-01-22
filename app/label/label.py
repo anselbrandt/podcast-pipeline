@@ -11,9 +11,10 @@ from app.utils import (
 )
 from .label_utils import getSpeakerLabels
 
-logging.getLogger('nemo_logger').setLevel(logging.ERROR)
+logging.getLogger("nemo_logger").setLevel(logging.ERROR)
 
 ROOT = os.getcwd()
+
 
 def label(input_dir: str, output_dir: str, reference_wav: str, hosts: list[str]):
     try:
@@ -62,14 +63,15 @@ def label(input_dir: str, output_dir: str, reference_wav: str, hosts: list[str])
             for idx, start, end, speaker, speech in transcript
         ]
         segments = [
-            f"{idx}|{start}|{end}|{speaker}|{speakerLabels[speaker]}|{speech}"
+            f"{idx}|{start}|{end}|{speakerLabels[speaker]}|{speech}"
             for idx, start, end, speaker, speech in transcript
         ]
         srt = transcript_to_srt(labeled)
         f = open(srt_outpath, "w")
         f.write(srt)
         f.close()
-        segments_outpath = os.path.join(output_dir, "segments.txt")
+        csv_file = Path(srt_file).stem + ".csv"
+        segments_outpath = os.path.join(output_dir, csv_file)
         f = open(segments_outpath, "w")
         f.write("\n".join(segments))
         f.close()

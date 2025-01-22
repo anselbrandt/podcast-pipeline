@@ -1,5 +1,6 @@
 import os
 import argparse
+from pathlib import Path
 import torchaudio
 from app.utils.transcript import srt_to_transcript
 
@@ -45,7 +46,7 @@ def split(input_dir: str):
 
             torchaudio.save(output_file, segment, sample_rate)
 
-        segments_filepath = os.path.join(input_dir, "segments.txt")
+        segments_filepath = os.path.join(input_dir, Path(srt_file).stem + ".csv")
 
         f = open(segments_filepath, "w")
         f.write("\n".join(segments))

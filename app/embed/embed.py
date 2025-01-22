@@ -39,16 +39,18 @@ def embed(
     conn = sqlite3.connect("transcripts.db")
     c = conn.cursor()
     c.execute(
-        """SELECT idx, wavefile FROM lines WHERE showname LIKE ? AND episode LIKE ?""",
+        """SELECT idx, start, end FROM lines WHERE showname LIKE ? AND episode LIKE ?""",
         (show_name, episode_number),
     )
     results = c.fetchall()
     conn.commit()
     conn.close()
-    wav_dict = {str(idx): filepath for idx, filepath in results}
+    timestamp_dict = {
+        str(idx): {"start": start, "end": end} for idx, start, end in results
+    }
     file = open(file_path).read().split("\n\n")
     chunks = []
-    all_wavfiles = []
+    all_timestamps = []
     for chunk in file:
         lines = [
             (
@@ -58,14 +60,14 @@ def embed(
             )
             for line in chunk.split("\n")
         ]
-        wavfiles = [
-            {"speaker": speaker, "speech": speech, "wavfile": wav_dict[idx]}
+        timestamps = [
+            {"speaker": speaker, "speech": speech, "timestamps": timestamp_dict[idx]}
             for idx, speaker, speech in lines
         ]
 
         chunk_speech = " ".join([speech for idx, speaker, speech in lines])
         chunks.append(chunk_speech)
-        all_wavfiles.append(wavfiles)
+        all_timestamps.append(timestamps)
     documents = chunks
     metadatas = [
         {
@@ -74,7 +76,7 @@ def embed(
             "episode": episode_number,
             "title": episode_title,
             "date": episode_date,
-            "wavfiles": json.dumps(all_wavfiles[i]),
+            "timestamps": json.dumps(all_timestamps[i]),
         }
         for i, chunk in enumerate(chunks)
     ]
@@ -84,7 +86,7 @@ def embed(
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=str, help="Path to labeled .srt file")
+    parser.add_argument("--input", type=str, help="Path to chunked .txt file")
     parser.add_argument("--show", type=str, help="Show name")
     parser.add_argument("--episode", type=str, help="Episode number")
     parser.add_argument("--title", type=str, help="Episode title")

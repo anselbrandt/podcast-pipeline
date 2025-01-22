@@ -1,5 +1,5 @@
 # Chunk
 
 ```
-python -m app.chunk --input files/output/000_-_sample_episode.srt
+python -m app.chunk --input files/output/567_-_a_high_teen.srt
 ```

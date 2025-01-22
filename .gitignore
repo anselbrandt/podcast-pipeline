@@ -12,6 +12,7 @@ cache/
 whisper-diarization/
 chromadb/
 *.db
+*.csv
 *.mp3
 *.txt
 *.srt

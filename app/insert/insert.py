@@ -16,13 +16,11 @@ def insert(file_path, show_name, episode_number, episode_title, episode_date):
             episode text,
             title text,
             date text,
-            wavefile text,
             idx integer,
             start real,
             end real,
             duration real,
             speaker text,
-            speakername text,
             speech text
             )"""
     )
@@ -32,24 +30,21 @@ def insert(file_path, show_name, episode_number, episode_title, episode_date):
     filename = Path(file_path).name
 
     for line in lines:
-        idx, start, end, speaker, speakername, speech = line.split("|")
-        wavfile = f"{idx}_{start}_{end}_{speaker}.wav"
+        idx, start, end, speaker, speech = line.split("|")
         duration = round(float(end) - float(start), 3)
         c.execute(
-            "INSERT INTO lines VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO lines VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 filename,
                 show_name,
                 episode_number,
                 episode_title,
                 episode_date,
-                wavfile,
                 idx,
                 start,
                 end,
                 duration,
                 speaker,
-                speakername,
                 speech,
             ),
         )
@@ -59,7 +54,7 @@ def insert(file_path, show_name, episode_number, episode_title, episode_date):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=str, help="Path to labeled segments.txt file")
+    parser.add_argument("--input", type=str, help="Path to csv file")
     parser.add_argument("--show", type=str, help="Show name")
     parser.add_argument("--episode", type=str, help="Episode number")
     parser.add_argument("--title", type=str, help="Episode title")

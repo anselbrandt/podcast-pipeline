@@ -19,5 +19,5 @@ docker build -t whisper-nemo .
 ### From project root directory:
 
 ```
-docker run --privileged --rm --gpus all -v "$(pwd)/files:/app/files" -v "$(pwd)/cache/huggingface:/root/.cache/huggingface" whisper-nemo files/input/000_-_sample_episode.mp3
+docker run --privileged --rm --gpus all -v "$(pwd)/files:/app/files" -v "$(pwd)/cache/huggingface:/root/.cache/huggingface" whisper-nemo files/input/567_-_a_high_teen.mp3
 ```
