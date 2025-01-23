@@ -9,23 +9,13 @@ from chromadb.utils import embedding_functions
 ROOT = os.getcwd()
 
 chromadb_dir = os.path.join(ROOT, "chromadb")
+chunked_dir = os.path.join(ROOT, "files", "chunked")
 
 sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
     model_name="all-mpnet-base-v2", device="cuda"
 )
 
 chroma_client = chromadb.PersistentClient(path=chromadb_dir)
-
-try:
-    collection = chroma_client.get_collection(
-        name="podcasts", embedding_function=sentence_transformer_ef
-    )
-except:
-    collection = chroma_client.create_collection(
-        name="podcasts", embedding_function=sentence_transformer_ef
-    )
-
-chunked_dir = os.path.join(ROOT, "files", "chunked")
 
 
 def embed(
@@ -81,7 +71,18 @@ def embed(
         for i, chunk in enumerate(chunks)
     ]
     ids = [f"{show_name}_{episode_number}_{i}" for i, chunk in enumerate(chunks)]
-    collection.add(documents=documents, metadatas=metadatas, ids=ids)
+    collection = None
+    try:
+        collection = chroma_client.get_collection(
+            name="podcasts", embedding_function=sentence_transformer_ef
+        )
+    except Exception as error:
+        if error == "Collection podcasts does not exist.":
+            collection = chroma_client.create_collection(
+                name="podcasts", embedding_function=sentence_transformer_ef
+            )
+    if collection is not None:
+        collection.add(documents=documents, metadatas=metadatas, ids=ids)
 
 
 def main():

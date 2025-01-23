@@ -5,9 +5,7 @@ import os
 
 logging.getLogger("nemo_logger").setLevel(logging.ERROR)
 
-speaker_model = nemo_asr.models.EncDecSpeakerLabelModel.from_pretrained(
-    "nvidia/speakerverification_en_titanet_large"
-)
+speaker_model = nemo_asr.models.EncDecSpeakerLabelModel.from_pretrained("titanet_large")
 
 
 def reference_likleyhood(reference, samples):

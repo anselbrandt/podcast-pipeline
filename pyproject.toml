@@ -10,7 +10,6 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "semantic-router>=0.0.72",
     "sentence-transformers>=3.3.1",
-    "torchaudio>=2.5.1",
 ]
 
 [dependency-groups]
