@@ -15,8 +15,12 @@ ROOT = os.getcwd()
 encoder = OpenAIEncoder(name="text-embedding-3-small")
 
 
-def chunk(file_path):
-    chunkedDir = os.path.join(ROOT, "files", "chunked")
+def chunk(file_path, subdir=None):
+    chunkedDir = (
+        os.path.join(ROOT, "files", "chunked", subdir)
+        if subdir
+        else os.path.join(ROOT, "files", "chunked")
+    )
     os.makedirs(chunkedDir, exist_ok=True)
     transcript = srt_to_transcript(file_path)
     content_with_speaker = [
@@ -45,9 +49,15 @@ def chunk(file_path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=str, help="Path to labeled .srt file")
+    parser.add_argument("--subdir", type=str, help="Optional chunked sub directory")
     args = parser.parse_args()
-    file_path = args.input
-    chunk(file_path)
+    if args.subdir:
+        file_path = args.input
+        subdir = args.subdir
+        chunk(file_path, subdir)
+    else:
+        file_path = args.input
+        chunk(file_path, None)
 
 
 if __name__ == "__main__":
