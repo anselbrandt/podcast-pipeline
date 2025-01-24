@@ -1,5 +1,5 @@
 # Query ChromaDB
 
 ```
-python -m app.query --query "What does John Roderick think about Atmos?"
+python -m app.query --query "What does John Roderick think about hippies?"
 ```

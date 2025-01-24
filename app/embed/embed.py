@@ -15,7 +15,7 @@ chunked_dir = os.path.join(ROOT, "files", "chunked")
 
 
 def embed(
-    file_path: str,
+    file_path,
     show_name: str,
     episode_number: str,
     episode_title: str,

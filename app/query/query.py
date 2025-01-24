@@ -26,7 +26,7 @@ def query(query_string, number_chunks="10"):
         include=["documents", "metadatas"],
     )
     results = list(zip(raw_results["metadatas"][0], raw_results["documents"][0]))
-    metas = [json.loads(metadatas["wavfiles"]) for metadatas, text in results]
+    metas = [json.loads(metadatas["timestamps"]) for metadatas, text in results]
     text = [f"{line["speaker"]}: {line["speech"]}" for chunk in metas for line in chunk]
     response = "\n".join(text)
     print(response)
