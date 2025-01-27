@@ -1,4 +1,4 @@
-from .query import main
+from .retrieve import main
 
 if __name__ == "__main__":
     main()
