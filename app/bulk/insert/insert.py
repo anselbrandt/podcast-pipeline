@@ -18,14 +18,14 @@ def main():
     target_dir = Path(args.dir)
     show_name = args.show_name
     titles_meta = open(args.titles_meta).read().splitlines()
-    titles = titles = {
+    titles = {
         title: episode
         for title, episode in [
             (line.split(" - ")[0], line.split(" - ")[1]) for line in titles_meta
         ]
     }
     dates_meta = open(args.dates_meta).read().splitlines()
-    dates = dates = {
+    dates = {
         date: episode
         for date, episode in [
             (line.split(" - ")[0], line.split(" - ")[1]) for line in dates_meta
