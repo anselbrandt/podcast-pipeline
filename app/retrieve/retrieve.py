@@ -12,7 +12,7 @@ ROOT = os.getcwd()
 chromadb_dir = os.path.join(ROOT, "chromadb")
 
 
-def query(query_string, number_chunks="10"):
+def retrieve(query_string, number_chunks="10"):
     chroma_client = chromadb.PersistentClient(path=chromadb_dir)
     embedding_function = SentenceTransformerEmbeddingFunction(
         model_name="all-mpnet-base-v2", device="cuda"
@@ -42,9 +42,9 @@ def main():
     query_string = args.query
     if args.chunks is not None:
         number_chunks = args.chunks
-        query(query_string, number_chunks)
+        retrieve(query_string, number_chunks)
     else:
-        query(query_string)
+        retrieve(query_string)
 
 
 if __name__ == "__main__":
