@@ -18,3 +18,4 @@ chromadb/
 *.srt
 *.wav
 .env
+.DS_Store
