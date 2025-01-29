@@ -3,16 +3,11 @@ import argparse
 from dotenv import load_dotenv
 from pathlib import Path
 
-from semantic_router.encoders import OpenAIEncoder
-from semantic_router.splitters import RollingWindowSplitter
-
-from app.utils import srt_to_transcript
+from app.utils import merge_srt
 
 load_dotenv()
 
 ROOT = os.getcwd()
-
-encoder = OpenAIEncoder(name="text-embedding-3-small")
 
 
 def chunk(file_path, subdir=None):
@@ -22,23 +17,11 @@ def chunk(file_path, subdir=None):
         else os.path.join(ROOT, "files", "chunked")
     )
     os.makedirs(chunkedDir, exist_ok=True)
-    transcript = srt_to_transcript(file_path)
+    transcript = merge_srt(file_path)
     content_with_speaker = [
         f"{idx}|{speaker}: {speech} " for idx, start, end, speaker, speech in transcript
     ]
-    splitter = RollingWindowSplitter(
-        encoder=encoder,
-        dynamic_threshold=True,
-        min_split_tokens=100,
-        max_split_tokens=500,
-        window_size=2,
-        plot_splits=False,  # set this to true to visualize chunking
-        enable_statistics=False,  # to print chunking stats
-    )
-
-    splits = splitter(content_with_speaker)
-    chunks = ["\n".join(split.docs) for split in splits]
-    text = "\n\n".join(chunks)
+    text = "\n".join(content_with_speaker)
     filename = Path(file_path).stem
     outpath = os.path.join(chunkedDir, filename + ".txt")
     f = open(outpath, "w")

@@ -2,7 +2,7 @@ import argparse
 import sqlite3
 from pathlib import Path
 
-from app.utils import srt_to_transcript
+from app.utils import merge_srt
 
 dbFile = "transcripts.db"
 
@@ -28,7 +28,7 @@ def insert(file_path, show_name, episode_number, episode_title, episode_date):
     )
     conn.commit()
 
-    lines = srt_to_transcript(file_path)
+    lines = merge_srt(file_path)
     filename = Path(file_path).name
 
     for line in lines:

@@ -63,3 +63,41 @@ def getTextTranscript(filepath):
 
     lines = [line.rstrip() for line in file if line != ""]
     return lines
+
+
+def parse_subtitle(line):
+    idx, timestamp, dialogue = line
+    start = timestamp.split(" --> ")[0]
+    end = timestamp.split(" --> ")[1]
+    speaker = dialogue.split(": ")[0]
+    speech = dialogue.split(": ")[1]
+    return (idx, timeToSeconds(start), timeToSeconds(end), speaker, speech)
+
+
+def merge_srt(filepath):
+    srt = open(filepath, encoding="utf-8-sig").read().replace("\n\n", "\n").splitlines()
+    grouped = [srt[i : i + 3] for i in range(0, len(srt), 3)]
+    merged = []
+    idx, start, end, speaker, speech = parse_subtitle(grouped[0])
+    prev_idx = None
+    prev_start = None
+    prev_end = None
+    prev_speaker = None
+    prev_speech = None
+    for line in grouped:
+        idx, start, end, speaker, speech = parse_subtitle(line)
+        if speaker != prev_speaker:
+            if prev_speech is not None:
+                merged.append(
+                    (prev_idx, prev_start, prev_end, prev_speaker, prev_speech)
+                )
+            prev_idx = idx
+            prev_start = start
+            prev_end = end
+            prev_speaker = speaker
+            prev_speech = speech
+        elif speaker == prev_speaker:
+            prev_end = end
+            prev_speech = f"{prev_speech} {speech}"
+    merged.append((prev_idx, prev_start, prev_end, prev_speaker, prev_speech))
+    return merged
