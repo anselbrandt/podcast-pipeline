@@ -5,7 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "chonkie[st]>=0.4.1",
     "chromadb>=0.6.3",
+    "ipykernel>=6.29.5",
     "nemo-toolkit[asr]>=2.1.0",
     "python-dotenv>=1.0.1",
 ]
