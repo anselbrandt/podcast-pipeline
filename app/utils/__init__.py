@@ -5,6 +5,7 @@ from .transcript import (
     getTextTranscript,
     merge_srt,
 )
+from .utils import sanitize
 
 __all__ = [
     srt_to_transcript,
@@ -12,4 +13,5 @@ __all__ = [
     labelTextTranscript,
     getTextTranscript,
     merge_srt,
+    sanitize,
 ]

@@ -1,13 +1,7 @@
 import os
-import re
 import argparse
 
-
-def sanitize(filename):
-    sanitized = filename.replace(" ", "_")
-    sanitized = re.sub(r"[^\w\d._-]", "", sanitized)
-    sanitized = sanitized.lower()
-    return sanitized
+from app.utils import sanitize
 
 
 def main():
