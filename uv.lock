@@ -2568,6 +2568,7 @@ dependencies = [
     { name = "ipywidgets" },
     { name = "nemo-toolkit", extra = ["asr"] },
     { name = "ollama" },
+    { name = "pydantic" },
     { name = "python-dotenv" },
 ]
 
@@ -2586,6 +2587,7 @@ requires-dist = [
     { name = "ipywidgets", specifier = ">=8.1.5" },
     { name = "nemo-toolkit", extras = ["asr"], specifier = ">=2.1.0" },
     { name = "ollama", specifier = ">=0.4.7" },
+    { name = "pydantic", specifier = ">=2.10.5" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
 ]
 
