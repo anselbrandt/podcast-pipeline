@@ -6,6 +6,7 @@ from .transcript import (
     merge_srt,
 )
 from .utils import sanitize
+from .metadata import ShowMetadataList, ShowMetadata, metadata_to_dict
 
 __all__ = [
     srt_to_transcript,
@@ -14,4 +15,7 @@ __all__ = [
     getTextTranscript,
     merge_srt,
     sanitize,
+    ShowMetadataList,
+    ShowMetadata,
+    metadata_to_dict,
 ]
