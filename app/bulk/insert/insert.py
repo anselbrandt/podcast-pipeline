@@ -19,15 +19,15 @@ def main():
     show_name = args.show_name
     titles_meta = open(args.titles_meta).read().splitlines()
     titles = {
-        title: episode
-        for title, episode in [
+        episode: title
+        for episode, title in [
             (line.split(" - ")[0], line.split(" - ")[1]) for line in titles_meta
         ]
     }
     dates_meta = open(args.dates_meta).read().splitlines()
     dates = {
-        date: episode
-        for date, episode in [
+        episode: date
+        for episode, date in [
             (line.split(" - ")[0], line.split(" - ")[1]) for line in dates_meta
         ]
     }
