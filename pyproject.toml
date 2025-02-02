@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "chonkie[st]>=0.4.1",
     "chromadb>=0.6.3",
+    "gliner>=0.2.16",
     "ipykernel>=6.29.5",
     "ipywidgets>=8.1.5",
     "nemo-toolkit[asr]>=2.1.0",

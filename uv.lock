@@ -875,6 +875,23 @@ wheels = [
 ]
 
 [[package]]
+name = "gliner"
+version = "0.2.16"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "huggingface-hub" },
+    { name = "onnxruntime" },
+    { name = "sentencepiece" },
+    { name = "torch" },
+    { name = "tqdm" },
+    { name = "transformers" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/44/a6/3ae136b0996689e497b6ca07490d6ecfda62e2e215fd16e39b4558a42194/gliner-0.2.16.tar.gz", hash = "sha256:030139c3cceb78269d40f1bb8a040c9563705b33d9ff88e9ae9f699edb841738", size = 52631 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2f/2b/92766d80acde0523c4be58f7fb288dd572697d664ddceecaf644bef3e48d/gliner-0.2.16-py3-none-any.whl", hash = "sha256:101734441b96e757e58cb30250957c81489f87abfdf3e583bafeef10aa36ef84", size = 62324 },
+]
+
+[[package]]
 name = "google-auth"
 version = "2.38.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2564,6 +2581,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "chonkie", extra = ["st"] },
     { name = "chromadb" },
+    { name = "gliner" },
     { name = "ipykernel" },
     { name = "ipywidgets" },
     { name = "nemo-toolkit", extra = ["asr"] },
@@ -2583,6 +2601,7 @@ dev = [
 requires-dist = [
     { name = "chonkie", extras = ["st"], specifier = ">=0.4.1" },
     { name = "chromadb", specifier = ">=0.6.3" },
+    { name = "gliner", specifier = ">=0.2.16" },
     { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "ipywidgets", specifier = ">=8.1.5" },
     { name = "nemo-toolkit", extras = ["asr"], specifier = ">=2.1.0" },
