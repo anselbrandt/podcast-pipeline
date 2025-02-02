@@ -227,14 +227,14 @@ dates_titles = metadata_to_dict(data)
 ### Chunking
 
 ```
-from chonkie import LateChunker
+from chonkie import SDPMChunker
 
-chunker = LateChunker(
-    embedding_model="all-MiniLM-L6-v2",
-    mode="sentence",
+chunker = SDPMChunker(
+    embedding_model="minishlab/potion-base-8M",
+    threshold=0.5,
     chunk_size=512,
-    min_sentences_per_chunk=1,
-    min_characters_per_sentence=12,
+    min_sentences=1,
+    skip_window=1,
     delim="\n",
 )
 

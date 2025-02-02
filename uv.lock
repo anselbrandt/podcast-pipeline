@@ -345,6 +345,10 @@ wheels = [
 ]
 
 [package.optional-dependencies]
+semantic = [
+    { name = "model2vec" },
+    { name = "numpy" },
+]
 st = [
     { name = "numpy" },
     { name = "sentence-transformers" },
@@ -1791,6 +1795,25 @@ wheels = [
 ]
 
 [[package]]
+name = "model2vec"
+version = "0.3.8"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "jinja2" },
+    { name = "joblib" },
+    { name = "numpy" },
+    { name = "rich" },
+    { name = "safetensors" },
+    { name = "setuptools" },
+    { name = "tokenizers" },
+    { name = "tqdm" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1f/8f/6963a1f2fabc35957c3cceccae41afd82c98368c878cb6751175264ceea5/model2vec-0.3.8.tar.gz", hash = "sha256:888fd7e6d056efa468fdb5b6fe239851b6a2b922c4240c3e8e66bf2268f6aa4a", size = 2300870 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d9/e2/0f296f4c27ffbd17012ef59e281d9d4a2d9f04558a3cfc734bceac00c4f3/model2vec-0.3.8-py3-none-any.whl", hash = "sha256:c7c8ff5097a5cbf221876dcf3f451f3654fca0f549b35e17be2a7fa8e40a8c0c", size = 27853 },
+]
+
+[[package]]
 name = "monotonic"
 version = "1.6"
 source = { registry = "https://pypi.org/simple" }
@@ -2579,7 +2602,7 @@ name = "podcast-pipeline"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "chonkie", extra = ["st"] },
+    { name = "chonkie", extra = ["semantic", "st"] },
     { name = "chromadb" },
     { name = "gliner" },
     { name = "ipykernel" },
@@ -2599,7 +2622,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "chonkie", extras = ["st"], specifier = ">=0.4.1" },
+    { name = "chonkie", extras = ["semantic", "st"], specifier = ">=0.4.1" },
     { name = "chromadb", specifier = ">=0.6.3" },
     { name = "gliner", specifier = ">=0.2.16" },
     { name = "ipykernel", specifier = ">=6.29.5" },
