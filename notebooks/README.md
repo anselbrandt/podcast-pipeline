@@ -120,8 +120,6 @@ def clean_response(text):
 
 ### List Comprehension Filtering
 
-Where `episodes` is a list containing
-
 ```
 if any(item in string for item in items_to_be_matches)
 ```
