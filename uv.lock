@@ -349,10 +349,6 @@ semantic = [
     { name = "model2vec" },
     { name = "numpy" },
 ]
-st = [
-    { name = "numpy" },
-    { name = "sentence-transformers" },
-]
 
 [[package]]
 name = "chroma-hnswlib"
@@ -2602,7 +2598,7 @@ name = "podcast-pipeline"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "chonkie", extra = ["semantic", "st"] },
+    { name = "chonkie", extra = ["semantic"] },
     { name = "chromadb" },
     { name = "gliner" },
     { name = "ipykernel" },
@@ -2622,7 +2618,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "chonkie", extras = ["semantic", "st"], specifier = ">=0.4.1" },
+    { name = "chonkie", extras = ["semantic"], specifier = ">=0.4.1" },
     { name = "chromadb", specifier = ">=0.6.3" },
     { name = "gliner", specifier = ">=0.2.16" },
     { name = "ipykernel", specifier = ">=6.29.5" },
@@ -3455,24 +3451,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/84/9d/8f539002b5e203723af6a6f513a45e0a7671e9dabeedb08f417ac17e4edc/scipy-1.15.1-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f735bc41bd1c792c96bc426dece66c8723283695f02df61dcc4d0a707a42fc54", size = 39883261 },
     { url = "https://files.pythonhosted.org/packages/97/c0/62fd3bab828bcccc9b864c5997645a3b86372a35941cdaf677565c25c98d/scipy-1.15.1-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:2722a021a7929d21168830790202a75dbb20b468a8133c74a2c0230c72626b6c", size = 42093299 },
     { url = "https://files.pythonhosted.org/packages/e4/1f/5d46a8d94e9f6d2c913cbb109e57e7eed914de38ea99e2c4d69a9fc93140/scipy-1.15.1-cp313-cp313t-win_amd64.whl", hash = "sha256:bc7136626261ac1ed988dca56cfc4ab5180f75e0ee52e58f1e6aa74b5f3eacd5", size = 43181730 },
-]
-
-[[package]]
-name = "sentence-transformers"
-version = "3.4.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "huggingface-hub" },
-    { name = "pillow" },
-    { name = "scikit-learn" },
-    { name = "scipy" },
-    { name = "torch" },
-    { name = "tqdm" },
-    { name = "transformers" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c9/85/46c3fa0560cf7b57bc1f135d386120b95d131780e3558bf1f244bdeaa61f/sentence_transformers-3.4.0.tar.gz", hash = "sha256:334288062d4b888cdd7b75913fead46b1e42bfe836f8343d23478d17f799e650", size = 223537 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/73/5d/8bb8486058f6cda9903588f452c4774f3c3bbba6f840c582c5e92ac9ab95/sentence_transformers-3.4.0-py3-none-any.whl", hash = "sha256:f7d4ad81260149172a98108a3481d8e82c11d31f40d41885f43d481149237743", size = 275723 },
 ]
 
 [[package]]

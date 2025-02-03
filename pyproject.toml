@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "chonkie[semantic,st]>=0.4.1",
+    "chonkie[semantic]>=0.4.1",
     "chromadb>=0.6.3",
     "gliner>=0.2.16",
     "ipykernel>=6.29.5",
