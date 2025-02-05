@@ -7,7 +7,7 @@ from app.utils.transcript import srt_to_transcript
 ROOT = os.getcwd()
 
 
-def split(input_dir: str):
+def split(input_dir: Path | str):
     try:
         output_dir = os.path.join(input_dir, "wavs")
         os.makedirs(output_dir, exist_ok=True)

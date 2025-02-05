@@ -3,6 +3,7 @@ from pathlib import Path
 from subprocess import Popen, PIPE, run
 
 from app.rename import rename
+from app.split import split
 
 input_dir = Path("files/input")
 
@@ -29,6 +30,7 @@ def transcribe(file):
             print(line, end="")
 
 
-for file in files[:1]:
+for file in files:
     safe_name = rename(file)
-    transcribe(safe_name)
+    # transcribe(safe_name)
+    split(input_dir)
