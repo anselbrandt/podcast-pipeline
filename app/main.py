@@ -4,8 +4,13 @@ from subprocess import Popen, PIPE, run
 
 from app.rename import rename
 from app.split import split
+from app.label import label
 
+reference_wav = "files/reference/john.wav"
+hosts = ["John", "Merlin"]
 input_dir = Path("files/input")
+output_dir = Path("files/output")
+output_dir.mkdir(parents=True, exist_ok=True)
 
 files = [file for file in input_dir.iterdir() if ".mp3" in file.name]
 
@@ -31,6 +36,7 @@ def transcribe(file):
 
 
 for file in files:
-    safe_name = rename(file)
+    # safe_name = rename(file)
     # transcribe(safe_name)
-    split(input_dir)
+    wav_dir = split(input_dir)
+    # label(input_dir, output_dir, reference_wav, hosts)

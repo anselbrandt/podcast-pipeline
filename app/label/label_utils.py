@@ -9,11 +9,15 @@ speaker_model = nemo_asr.models.EncDecSpeakerLabelModel.from_pretrained("titanet
 
 
 def reference_likleyhood(reference, samples):
-    results = 0
-    for sample in samples:
-        result = speaker_model.verify_speakers(reference, sample)
-        results = results + result
-    return results / 10
+    try:
+        results = 0
+        for sample in samples:
+            print(reference, sample)
+            result = speaker_model.verify_speakers(reference, sample)
+            results = results + result
+        return results / 10
+    except Exception as error:
+        print(error)
 
 
 def getSpeakers(wavFilePaths):
@@ -32,7 +36,7 @@ def getSpeakerLabels(reference, wavFiles, hosts):
     speakers = getSpeakers(wavFiles)
     speakerNames = {}
     for speaker in speakers:
-        speakerWavs = [file for file in wavFiles if speaker in file]
+        speakerWavs = [file for file in wavFiles if speaker in file.name]
         randomized = random.sample(speakerWavs, len(speakerWavs))[:10]
         result = reference_likleyhood(reference, randomized)
         speakerName = primary if result > 0.5 else secondary
