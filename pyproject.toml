@@ -13,8 +13,8 @@ dependencies = [
     "nemo-toolkit[asr]>=2.1.0",
     "ollama>=0.4.7",
     "pydantic>=2.10.5",
+    "pydub>=0.25.1",
     "python-dotenv>=1.0.1",
-    "torchaudio>=2.6.0",
 ]
 
 [dependency-groups]

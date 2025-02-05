@@ -1,7 +1,7 @@
 import os
 import argparse
 from pathlib import Path
-import torchaudio
+from pydub import AudioSegment
 from app.utils.transcript import srt_to_transcript
 
 ROOT = os.getcwd()
@@ -28,23 +28,20 @@ def split(input_dir: Path | str):
             )
 
         transcript = srt_to_transcript(srt_file)
-        waveform, sample_rate = torchaudio.load(mp3_file)
-
-        if waveform.size(0) > 1:
-            waveform = waveform.mean(dim=0, keepdim=True)
-
+        audio = AudioSegment.from_file(mp3_file, format="mp3")
+        duration = len(audio)
         segments = []
 
         for idx, start, end, speaker, speech in transcript:
-            start_frame = int(start * sample_rate)
-            end_frame = int(end * sample_rate)
-            segment = waveform[:, start_frame:end_frame]
-
-            output_file = os.path.join(output_dir, f"{idx}_{start}_{end}_{speaker}.wav")
-
-            segments.append(f"{idx}|{start}|{end}|{speaker}|{speech}")
-
-            torchaudio.save(output_file, segment, sample_rate)
+            start_ms = int(start * 1000)
+            end_ms = int(end * 1000)
+            if start_ms < duration and end_ms < duration:
+                segment = audio[start_ms:end_ms]
+                output_path = os.path.join(
+                    output_dir, f"{idx}_{start}_{end}_{speaker}.wav"
+                )
+                segments.append(f"{idx}|{start}|{end}|{speaker}|{speech}")
+                segment.export(output_path, format="wav")
 
         segments_filepath = os.path.join(input_dir, Path(srt_file).stem + ".csv")
 
