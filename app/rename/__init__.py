@@ -1,3 +1,3 @@
-from .rename import sanitize
+from .rename import sanitize, rename
 
-__all__ = [sanitize]
+__all__ = [sanitize, rename]
