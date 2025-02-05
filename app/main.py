@@ -36,7 +36,7 @@ def transcribe(file):
 
 
 for file in files:
-    # safe_name = rename(file)
-    # transcribe(safe_name)
+    safe_name = rename(file)
+    transcribe(safe_name)
     wav_dir = split(input_dir)
     label(input_dir, output_dir, reference_wav, hosts)
