@@ -12,7 +12,6 @@ def reference_likleyhood(reference, samples):
     try:
         results = 0
         for sample in samples:
-            print(reference, sample)
             result = speaker_model.verify_speakers(reference, sample)
             results = results + result
         return results / 10
