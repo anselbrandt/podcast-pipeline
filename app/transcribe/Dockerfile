@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04
+FROM nvidia/cuda:12.8.0-cudnn-runtime-ubuntu24.04
 
 RUN apt-get update -y && apt-get install -y \
     python3-pip \
@@ -12,7 +12,7 @@ RUN apt-get update -y && apt-get install -y \
 
 WORKDIR /app
 
-ENV LD_LIBRARY_PATH="/usr/local/cuda-12.6/lib64:/app/venv/lib64/python3.12/site-packages/nvidia/cudnn/lib:/app/venv/lib64/python3.12/site-packages/nvidia/cublas/lib:$LD_LIBRARY_PATH"
+ENV LD_LIBRARY_PATH="/usr/local/cuda-12.8/lib64:/app/venv/lib64/python3.12/site-packages/nvidia/cudnn/lib:/app/venv/lib64/python3.12/site-packages/nvidia/cublas/lib:$LD_LIBRARY_PATH"
 ENV PATH="/app/venv/bin:$PATH"
 
 COPY whisper-diarization/constraints.txt .
