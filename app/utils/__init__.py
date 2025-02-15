@@ -4,6 +4,8 @@ from .transcript import (
     labelTextTranscript,
     getTextTranscript,
     merge_srt,
+    srt_to_lines,
+    srt_to_text,
 )
 from .utils import sanitize
 from .metadata import ShowMetadataList, ShowMetadata, metadata_to_dict
@@ -18,4 +20,6 @@ __all__ = [
     ShowMetadataList,
     ShowMetadata,
     metadata_to_dict,
+    srt_to_lines,
+    srt_to_text,
 ]
