@@ -8,7 +8,7 @@ from .transcript import (
     srt_to_text,
 )
 from .utils import sanitize
-from .metadata import ShowMetadataList, ShowMetadata, metadata_to_dict
+from .metadata import ShowMetadataList, ShowMetadata, get_meta
 
 __all__ = [
     srt_to_transcript,
@@ -19,7 +19,7 @@ __all__ = [
     sanitize,
     ShowMetadataList,
     ShowMetadata,
-    metadata_to_dict,
+    get_meta,
     srt_to_lines,
     srt_to_text,
 ]

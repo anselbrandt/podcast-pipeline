@@ -32,3 +32,29 @@ def metadata_to_dict(metadata: ShowMetadataList):
             "titles": meta_dict(titles_filepath),
         }
     return metadata_dict
+
+
+data = ShowMetadataList(
+    shows=[
+        ShowMetadata(
+            "rotl",
+            Path("../files/meta/rotl_dates.txt"),
+            Path("../files/meta/rotl_titles.txt"),
+        ),
+        ShowMetadata(
+            "roadwork",
+            Path("../files/meta/roadwork_dates.txt"),
+            Path("../files/meta/roadwork_titles.txt"),
+        ),
+    ]
+)
+
+dates_titles = metadata_to_dict(data)
+
+
+def get_meta(file):
+    file_name = file.name
+    episode_number = file_name.split("_-_")[0]
+    episode_date = dates_titles["rotl"]["dates"][episode_number]
+    episode_title = dates_titles["rotl"]["titles"][episode_number]
+    return (file_name, episode_number, episode_date, episode_title)
