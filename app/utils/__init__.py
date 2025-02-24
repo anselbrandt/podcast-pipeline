@@ -10,6 +10,7 @@ from .transcript import (
 from .utils import sanitize
 from .metadata import ShowMetadataList, ShowMetadata, get_meta
 from .nlp import gliner_model, NER_Entity
+from .llm import ask_llm
 
 __all__ = [
     srt_to_transcript,
@@ -24,5 +25,6 @@ __all__ = [
     srt_to_lines,
     srt_to_text,
     gliner_model,
-    NER_Entity
+    NER_Entity,
+    ask_llm
 ]
